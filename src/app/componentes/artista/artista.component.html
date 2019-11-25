@@ -1,0 +1,44 @@
+<div class="container">
+    <div *ngIf="!bandera">
+        <p>Esperando a que cargen los servicios... </p>
+    </div>
+    <div *ngIf="bandera" class="row">
+        <div class="col-2 ">
+            <img class="img-thumbnail" [src]="artista.images | noImagen  " alt="">
+        </div>
+        <div>
+            <h3>{{artista.name}}</h3>
+            <p>
+                <a [href]="artista.external_urls.spotify">Ir a la pagina oficial.</a>
+            </p>
+        </div>
+        <div class="col-4 text-right">
+            <button [routerLink]="['/buscar']" routerLinkActive="router-link-active"  class="btn btn-primary" type="button">Regresar</button>
+        </div>
+            
+    </div>
+</div>
+
+<div class="row m-5">
+    <div class="col">
+        <table  class="table text-white ">
+            <thead>
+                <th>Foto</th>
+                <th>Album</th>
+                <th>Cancion</th>
+                <th>Vista Previa</th>
+            </thead>
+            <tbody *ngFor="let item of _cancionesTop">
+                <tr>
+                    <td><img class="img-thumbnail imagenTamaño" [src]="item.album.images | noImagen " alt=""></td>
+                    <td>{{item.album.name}}</td>
+                    <td>{{item.name}}</td>
+                    <td>
+                        <audio [src]="item.preview_url" controls></audio>
+                    </td>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
