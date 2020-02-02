@@ -13,9 +13,9 @@ export class SpotifyService {
     console.log("Servicio de spotify listo para utilizar...");
    }
 
-   EjecutarQuery(query:string){
+   EjecutarQuery(query:string, accesToken:string){
       const url = `https://api.spotify.com/v1/${query}`; 
-      const token:string = "BQCXW8Fha2FMJ4MyyXtrO-QhGU9AUqdMvOLG8OQ4cA_0_IXMtGHnPJvQmX7c35vGUOAgMFSc0PKwP1tHKF8";
+      const token:string = accesToken;
       //Header
       this.header  = new HttpHeaders({
         'Content-Type' : 'application/json',
@@ -26,25 +26,25 @@ export class SpotifyService {
    }
 
    /// Obtener los nuevos lanzamientos de spotify
-   ObtenerNuevosLanzamientos(){
-      return this.EjecutarQuery("browse/new-releases")
+   ObtenerNuevosLanzamientos(accesToken:string){
+      return this.EjecutarQuery("browse/new-releases", accesToken)
                         .pipe(map(data => {
                             return data['albums'].items
                         }));
    }
 
-   ObtenerArtistas(termino:string){
-      return this.EjecutarQuery(`search?q=${termino}&type=artist`)
+   ObtenerArtistas(termino:string,accesToken:string){
+      return this.EjecutarQuery(`search?q=${termino}&type=artist`, accesToken)
                     .pipe(map(data => {
                       return data['artists'].items
                   }));
    }
 
-   ObtenerArtista(termino:string){
-    return this.EjecutarQuery(`artists/${termino}`);
+   ObtenerArtista(termino:string,accesToken:string){
+    return this.EjecutarQuery(`artists/${termino}`, accesToken );
    }
-    ObtenerCancionesTop(termino:string){
-      return this.EjecutarQuery(`artists/${termino}/top-tracks?country=us`)
+    ObtenerCancionesTop(termino:string,accesToken:string){
+      return this.EjecutarQuery(`artists/${termino}/top-tracks?country=us`,accesToken)
                     .pipe(map(data => {
                       return data['tracks']
                   }));

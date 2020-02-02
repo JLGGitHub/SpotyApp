@@ -21,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NoImagenPipe } from './pipes/no-imagen.pipe';
 import { TarjetasComponent } from './componentes/compartidos/tarjetas/tarjetas.component';
 import { KeyvaultService } from './servicios/keyvault.service';
+import { TokenService } from './servicios/token.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { KeyvaultService } from './servicios/keyvault.service';
   ],
   providers: [
     SpotifyService,
-    KeyvaultService
+    KeyvaultService,
+    TokenService
   ],
   bootstrap: [AppComponent]
 })
